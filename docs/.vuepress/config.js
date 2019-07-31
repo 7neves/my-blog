@@ -19,8 +19,9 @@ module.exports = {
       title: '总结',
       // collapsable: false,
       children: [
-        ['/web/JS-ES5', 'JS-ES5总结'],
-        ['/web/JS-ES6', 'JS-ES6总结']
+        ['/web/JS-ES5', 'JS-ES5'],
+        ['/web/JS-ES6', 'JS-ES6'],
+        ['/web/vue-cli3', 'vue-cli3']
       ]
     }, ],
     sidebarDepth: 2, // 侧边栏显示2级
