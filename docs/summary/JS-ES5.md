@@ -3,11 +3,18 @@ js中如果需要将一个变量，或一个字符串用作对象的key值，需
 ## 2. js创建一个空对象的方式
 1. `let obj = {};` 或 `let obj = new Object();` 
     - 这两种方式是一样的，都**会继承Object对象上的属性和方法**:
-    <img src="https://app.yinxiang.com/shard/s11/res/dd09b2f2-9673-42f3-af88-5224c7e7ad6f" width="350" align=center title="{}" />
-    <img src="https://app.yinxiang.com/shard/s11/res/aff09229-68e2-4240-b7ea-d7b8b2bcfed7" width="350" align=center title="Object()" />
+    <div class="img-show">
+    <a data-fancybox title="let obj = {};" href="https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190803122017.png">![let obj = {};](https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190803122017.png)</a>
+    <p>let obj = {};</p>
+    <a data-fancybox title="" href="https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190803122034.png">![](https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190803122034.png)</a>
+    <p>let obj = new Object();</p>
+    </div>
 2. `let obj = Object.create(null);`
     - 这种方式会创建一个纯净的对象，**不携带任何Object自带的方法和属性**
-    <img src="https://app.yinxiang.com/shard/s11/res/fc752d43-003c-474b-a4fe-0e01ac3e2195" width="350" align=center title="Object.create(null)" />
+    <div class="img-show">
+    <a data-fancybox title="" href="https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190803122045.png">![](https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190803122045.png)</a>
+    <p>let obj = Object.create(null)</p>
+    </div>
 ## 3. 如何判断对象是否为空
 判断一个对象是否为空对象，常用的三种方法：
 1. 使用 `JSON` 对象的 `stringify()` 方法：
