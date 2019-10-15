@@ -24,3 +24,5 @@ git push -f git@e.coding.net:suitmobs/MyBlog.git master
 在博客目录执行下列命令，即可完成部署：  
     1. `npm run build`
     2. `npm run deploy`
+# 优文转载
+## 1. [VuePress支持图片放大功能](https://segmentfault.com/a/1190000016928859)

@@ -1,5 +1,8 @@
 ---
 home: true
 actionText: MyBlog →
-actionLink: /summary/JS-ES5.md
+actionLink: /JavaScript/
+features:
+- title: 温故而知新
+- title: 一日三省
 ---

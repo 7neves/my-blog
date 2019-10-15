@@ -1,0 +1,1 @@
+<img :src="$withBase('/images/JavaScript.png')" alt="JavaScript">
