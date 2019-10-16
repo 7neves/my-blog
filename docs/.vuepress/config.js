@@ -83,9 +83,10 @@ module.exports = {
         {
           title: 'JavaScript',
           collapsable: false,
-          sidebarDepth: 3,
+          sidebarDepth: 4,
           children: [
-            ['JavaScript/JS-ES5', 'JavaScript']
+            ['JavaScript/JS-ES5', '日常收集'],
+            ['JavaScript/ECMAScript', 'ECMAScript']
           ]
         },
         ['Reprint/Reprint', '优文转载']
