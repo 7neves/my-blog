@@ -3,7 +3,6 @@ const path = require('path');
 module.exports = {
   title: 'Seven\'s Blog',
   description: '专注前端，不止于前端',
-  // palette: path.resolve(__dirname, 'palette.styl'), // 设置主题样式
   plugins: {
     '@vuepress/plugin-medium-zoom': { // 注意：此处不是@vuepress/plugin-medium-zoom
       selector: 'img.zoom-img',
