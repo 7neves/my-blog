@@ -85,16 +85,8 @@ vue-cli3中对[webpack的配置](https://cli.vuejs.org/zh/guide/webpack.html#web
           58KB|12726个字符
           562KB|767644个字符
           再看下打包后文件的大小：
-          <div style="overflow:hidden">
-          <div class="img-show" style="float:left;width:320px;">
-          <a data-fancybox title="" href="https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190919102532.png">![](https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190919102532.png)</a>
-          <p>打包2.5KB的图片</p>
-          </div>
-          <div class="img-show" style="float:right;width:320px;">
-          <a data-fancybox title="" href="https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190919102553.png">![](https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190919102553.png)</a>
-          <p>打包562KB的图片</p>
-          </div>
-          </div>
+          <img-show :img-info="{src:'https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190919102532.png',description:'打包2.5KB的图片'}"/>
+          <img-show :img-info="{src:'https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190919102553.png',description:'打包562KB的图片'}"/>
           可以看到打包文件大小差异非常大，所以图片的处理，图片的大小和数量决定了存放的位置。个人建议图片的处理方式如下，优先级从上往下递减：
             - 小的icon图片，[制作成iconfont](https://www.iconfont.cn/help/detail?spm=a313x.7781069.1998910419.d8d11a391&helptype=code)，以字体图标的方式引入使用
             - 较小(少)的(<=6KB)无法制作成iconfont字体图标的通过webpack来处理 
@@ -116,14 +108,8 @@ vue-cli3中对[webpack的配置](https://cli.vuejs.org/zh/guide/webpack.html#web
               ```
             - 在组件中使用  
               首先，来看两个“工具”：[node中的process.env属性](http://nodejs.cn/api/process.html#process_process_env)，它可以获取用户环境的对象；webpack的[`DefinePlugin`](https://www.webpackjs.com/plugins/define-plugin/#用法)插件，它可以创建一个在编译时可以配置的全局常量，因此我们可以使用该插件来为`process.env`对象添加一个变量，在不同环境下有不一样的值。通过`vue ui`可视化界面执行inspect任务，可以看到，在vue-cli3的默认配置中，已经通过`DefinePlugin`插件定义了`BASE_URL`环境变量： 
-              <div class="img-show">
-              <a data-fancybox title="" href="https://raw.githubusercontent.com/7neves/CloudImg/master/images/20191014150036.png">![](https://raw.githubusercontent.com/7neves/CloudImg/master/images/20191014150036.png)</a>
-              <p>开发环境</p>
-              </div>
-              <div class="img-show">
-              <a data-fancybox title="" href="https://raw.githubusercontent.com/7neves/CloudImg/master/images/20191014153253.png">![](https://raw.githubusercontent.com/7neves/CloudImg/master/images/20191014153253.png)</a>
-              <p>生产环境</p>
-              </div>
+              <img-show :img-info="{src:'https://raw.githubusercontent.com/7neves/CloudImg/master/images/20191014150036.png',description:'开发环境'}"></img-show>
+              <img-show :img-info="{src:'https://raw.githubusercontent.com/7neves/CloudImg/master/images/20191014153253.png',description:'生产环境'}"></img-show>
               所以在组件中，可以使用[客户端侧使用环境变量的方式](https://cli.vuejs.org/zh/guide/mode-and-env.html#在客户端侧代码中使用环境变量)获取`BASE_URL`这个全局变量
               ```js
               data(){
@@ -157,8 +143,6 @@ vue-cli3中对[webpack的配置](https://cli.vuejs.org/zh/guide/webpack.html#web
 ## 4. 使用`.svg`文件作为背景图片
 - **问题**：在项目中将`.svg`的文件存放于 `./src/assets/images` 目录下，使用会被webpack打包处理的引用方式：`background-image: url("~@/assets/images/xxx.svg");`，本地开发环境能正常展示，打包后图片无法正常展示。通过观察打包目录发现，`.svg`文件被单独打包到静态资源下的 `img/` 目录下，而未经过webpack处理。
 - **解决问题**：猜想是默认配置问题，通过`vue ui`检查webpack配置，发现vue-cli3对`.svg`文件的处理方式如下：
-  <div class="img-show">
-    <a data-fancybox title="" href="https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190911112137.png">![](https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190911112137.png)</a>
-  </div>
+  <img-show :img-info="{src:'https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190911112137.png',description:'默认配置'}"></img-show>
 在vue-cli3默认的配置中，处理`.svg`文件的方式是添加hash值之后直接拷贝的，并不会压缩处理。
   - 将`.svg`文件放在`public/`目录下，进行文件的直接拷贝，使用方式同引用`public/`目录下文件的方式一样

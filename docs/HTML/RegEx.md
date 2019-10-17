@@ -23,10 +23,7 @@
 ## 4. 匹配规则
 ### 1. 基本（精确）匹配
 正则表达式由一些字母和数字组合而成，表示在字符串中执行查找时的格式。例如，想要在如下字符串中查找`the`，直接定义`/the/`即可进行精确的查找，**正则是大小写敏感的**，所以只会匹配`the`而不会匹配`The`:
-<div class="img-show">
-<a data-fancybox title="" href="https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190902112603.png">![](https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190902112603.png)</a>
-<p>基本匹配</p>
-</div>
+<img-show :img-info="{src:'https://raw.githubusercontent.com/7neves/CloudImg/master/images/20191011150954.jpeg',description:'基本匹配'}"/>
 
 ### 2. 特殊字符-元字符
 > 元字符就是指那些在正则表达式中具有特殊意义的专用字符，可以用来规定其前导字符（即位于元字符前面的字符）在目标对象中的出现模式。

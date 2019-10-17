@@ -4,22 +4,21 @@ module.exports = {
   title: 'Seven\'s Blog',
   description: '专注前端，不止于前端',
   // palette: path.resolve(__dirname, 'palette.styl'), // 设置主题样式
+  plugins: {
+    '@vuepress/plugin-medium-zoom': { // 注意：此处不是@vuepress/plugin-medium-zoom
+      selector: 'img.zoom-img',
+      // medium-zoom options here
+      // See: https://github.com/francoischalifour/medium-zoom#options
+      options: {
+        margin: 16
+      }
+    }
+  },
   // 注入到当前页面的 HTML <head> 中的标签
   head: [
     ['link', {
       rel: 'icon',
       href: '/logo.jpg',
-    }], // 增加一个自定义的 favicon(网页标签的图标)
-    ['script', {
-      src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js'
-    }],
-    ['script', {
-      src: 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js'
-    }],
-    ['link', {
-      rel: 'stylesheet',
-      type: 'text/css',
-      href: 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css'
     }]
   ],
   base: '/', // 部署站点的基础路径
