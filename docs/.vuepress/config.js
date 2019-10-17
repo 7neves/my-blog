@@ -26,33 +26,7 @@ module.exports = {
   },
   // 主题配置
   themeConfig: {
-    // 侧边栏配置
-    // sidebar: 'auto', // 自动生成侧边栏
-    // sidebar: [{
-    //   title: '总结',
-    //   children: [
-    //     ['/summary/JS-ES5', 'JS-ES5'],
-    //     ['/summary/JS-ES6', 'JS-ES6'],
-    //     ['/summary/vue-cli3', 'vue-cli3'],
-    //     ['/summary/vue-router', 'vue-router'],
-    //     ['/summary/element', 'Element-UI'],
-    //     ['/summary/http', 'http'],
-    //     ['/summary/VuePress', 'VuePress']
-    //   ]
-    // }, {
-    //   title: '学习',
-    //   children: [
-    //     // ['/learn/RegEx', '正则表达式']
-    //   ]
-    // }, {
-    //   title: '收集',
-    //   children: [
-    //     ['/gather/JavaScript', 'JavaScript'],
-    //     ['/gather/tool', '工具'],
-    //     ['/gather/VuePress', 'VuePress'],
-    //     ['/gather/VueCli', 'VueCli']
-    //   ]
-    // }],
+    // 导航栏配置
     nav: [{
       text: 'JavaScript',
       link: '/JavaScript/',
@@ -69,22 +43,24 @@ module.exports = {
       text: '其它',
       link: '/Other/'
     }],
+    // 侧边栏配置
     sidebar: {
-      '/JavaScript/': [{
-          title: 'ES6',
-          collapsable: false,
-          sidebarDepth: 3,
-          children: [
-            ['ES6/Promise', 'Promise']
-          ],
-        },
+      '/JavaScript/': [
+        // {
+        //   title: 'ES6',
+        //   collapsable: false,
+        //   sidebarDepth: 3,
+        //   children: [
+        //     ['ES6/Promise', 'Promise']
+        //   ],
+        // },
         {
           title: 'JavaScript',
           collapsable: false,
           sidebarDepth: 4,
           children: [
             ['JavaScript/JS-ES5', '日常收集'],
-            ['JavaScript/ECMAScript', 'ECMAScript']
+            // ['JavaScript/ECMAScript', 'ECMAScript']
           ]
         },
         ['Reprint/Reprint', '优文转载']
@@ -113,7 +89,8 @@ module.exports = {
         ['ElementUI', 'ElementUI'],
         ['FastMock', 'FastMock'],
         ['Vue-Cli3', 'Vue-Cli3'],
-        ['Vue-Router', 'Vue-Router']
+        ['Vue-Router', 'Vue-Router'],
+        ['VuePress', 'VuePress']
       ]
     },
     sidebarDepth: 3, // 侧边栏显示2级
