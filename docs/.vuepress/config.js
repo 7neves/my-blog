@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   title: 'Seven\'s Blog',
-  description: '专注前端，不止于前端',
+  description: '沉淀，沉淀，再沉淀',
   plugins: {
     '@vuepress/plugin-medium-zoom': { // 注意：此处不是@vuepress/plugin-medium-zoom
       selector: 'img.zoom-img',

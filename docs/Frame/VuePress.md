@@ -13,12 +13,58 @@
     我个人注册的域名是使用腾讯的，[添加CNAME的方法](https://cloud.tencent.com/document/product/302/3450)，其他应该类似，按照步骤操作即可。
 4. 部署配置`deploy.sh`文件的配置  
 同配置GitHub一样，添加如下命令即可
-```js
-git push -f git@e.coding.net:suitmobs/MyBlog.git master
-```
+
+    ```js
+    git push -f git@e.coding.net:suitmobs/MyBlog.git master
+    ```
 5. 部署操作  
 在博客目录执行下列命令，即可完成部署：  
     1. `npm run build`
     2. `npm run deploy`
-# 优文转载
-## 1. [VuePress支持图片放大功能](https://segmentfault.com/a/1190000016928859)
+## 2. VuePress搭建博客使用自定义组件实现图片缩放
+自己挖的坑：当初没仔细看官方文档，还去搜索了下VuePress如何进行图片缩放，不过还真有解决方案，是用jQuery插件来解决了（此方案还可以在日常开发中使用），详见[VuePress支持图片放大功能](https://segmentfault.com/a/1190000016928859)；虽然也能解决问题，但是作为一个强迫症患者表示不甘心，重读文档发现[原生是支持图片缩放](https://vuepress.vuejs.org/zh/plugin/official/plugin-medium-zoom.html)的😂，借助VuePress自带的[在Markdown中使用Vue](https://vuepress.vuejs.org/zh/guide/using-vue.html#使用组件)功能自定义一个缩放组件，在`.md`文件中无感知使用，美滋滋😝  
+还是坑：按照官文中的配置，缩放功能一直无法使用，鼠标悬浮图片没有放大手势，后来调整了下配置才能用了，目前不知道是官文写错了，还是自己仍然没看透官文🤣  
+**解决方案：**
+```js
+// config.js
+
+module.exports = {
+    plugins: {
+        '@vuepress/plugin-medium-zoom': { // 注意：此处不是官网提到的@vuepress/medium-zoom
+            selector: 'img.zoom-img',
+            // medium-zoom options here
+            // See: https://github.com/francoischalifour/medium-zoom#options
+            options: {
+                margin: 16
+            }
+        }
+    }
+}
+```
+在`docs/.vuepress/components/`目录下自定义组件：
+```js
+<template>
+  <div class="img-wrapper">
+    <img :src="imgInfo.src"
+         :alt="imgInfo.description"
+         class="zoom-img">
+    <p>{{ imgInfo.description }}</p>
+  </div>
+</template>
+
+export default {
+  name: "ImgShow",
+  props: {
+    imgInfo: {
+      required: true,
+      type: Object
+    }
+  }
+}
+// 为了篇幅此处省略了style，可以按照自己的样式来写
+```
+使用方法，就是在.md文件中直接像平常一样使用组件即可：
+```md
+<img-show :img-info="{src:'https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190911112137.png',description:'默认配置'}"/>
+```
+效果参考博客中的图片缩放效果。
