@@ -28,21 +28,23 @@ module.exports = {
   themeConfig: {
     // 导航栏配置
     nav: [{
-      text: 'JavaScript',
-      link: '/JavaScript/',
-    }, {
-      text: 'CSS',
-      link: '/CSS/'
-    }, {
-      text: 'HTML',
-      link: '/HTML/'
-    }, {
-      text: '框架/工具',
-      link: '/Frame/'
-    }, {
-      text: '其它',
-      link: '/Other/'
-    }],
+        text: 'JavaScript',
+        link: '/JavaScript/',
+      }, {
+        text: 'CSS',
+        link: '/CSS/'
+      }, {
+        text: 'HTML',
+        link: '/HTML/'
+      }, {
+        text: '框架/工具',
+        link: '/Frame/'
+      },
+      // {
+      //   text: '其它',
+      //   link: '/Other/'
+      // }
+    ],
     // 侧边栏配置
     sidebar: {
       '/JavaScript/': [
@@ -87,10 +89,11 @@ module.exports = {
       ],
       '/Frame/': [
         ['ElementUI', 'ElementUI'],
-        ['FastMock', 'FastMock'],
+        ['FastMock', 'fastmock'],
         ['Vue-Cli3', 'Vue-Cli3'],
         ['Vue-Router', 'Vue-Router'],
-        ['VuePress', 'VuePress']
+        ['VuePress', 'VuePress'],
+        ['Reprint', '优文转载']
       ]
     },
     sidebarDepth: 3, // 侧边栏显示2级
