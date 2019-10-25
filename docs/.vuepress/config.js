@@ -62,6 +62,7 @@ module.exports = {
           sidebarDepth: 4,
           children: [
             ['JavaScript/JS-ES5', '日常收集'],
+            ['JavaScript/闭包', '闭包']
             // ['JavaScript/ECMAScript', 'ECMAScript']
           ]
         },
