@@ -3,11 +3,11 @@ js中如果需要将一个变量，或一个字符串用作对象的key值，需
 ## 2. js创建一个空对象的方式
 1. `let obj = {};` 或 `let obj = new Object();` 
     - 这两种方式是一样的，都**会继承Object对象上的属性和方法**:
-    <img-show :img-info="{src:'https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190803122017.png',description:'let obj = {};'}"/>
-    <img-show :img-info="{src:'https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190803122034.png',description:'let obj = new Object();'}"/>
+    <img-show :img-info="{src:'https://i.loli.net/2019/11/05/JyM58QjopPEXSaH.png',description:'let obj = {};'}"/>
+    <img-show :img-info="{src:'https://i.loli.net/2019/11/05/f9l8tqiZSjhu3Uw.png',description:'let obj = new Object();'}"/>
 2. `let obj = Object.create(null);`
     - 这种方式会创建一个纯净的对象，**不携带任何Object自带的方法和属性**
-    <img-show :img-info="{src:'https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190803122045.png',description:'let obj = Object.create(null)'}"/>
+    <img-show :img-info="{src:'https://i.loli.net/2019/11/05/2HB8szWbUVPNjtx.png',description:'let obj = Object.create(null)'}"/>
 ## 3. 如何判断对象是否为空
 判断一个对象是否为空对象，常用的三种方法：
 1. 使用 `JSON` 对象的 `stringify()` 方法：

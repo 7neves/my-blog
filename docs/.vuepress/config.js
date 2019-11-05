@@ -62,7 +62,7 @@ module.exports = {
           sidebarDepth: 4,
           children: [
             ['JavaScript/JS-ES5', '日常收集'],
-            ['JavaScript/闭包', '闭包']
+            ['JavaScript/深入理解JavaScript', '深入理解JavaScript']
             // ['JavaScript/ECMAScript', 'ECMAScript']
           ]
         },
@@ -71,10 +71,7 @@ module.exports = {
       '/CSS/': [{
           title: 'CSS',
           collapsable: true,
-          sidebarDepth: 3,
-          children: [
-            ['element', 'element']
-          ]
+          sidebarDepth: 3
         },
         ['Reprint/Reprint', '优文转载']
       ],
@@ -82,9 +79,9 @@ module.exports = {
           title: 'HTML',
           collapsable: true,
           sidebarDepth: 3,
-          children: [
-            ['element', 'element']
-          ]
+          // children: [
+          //   ['element', 'element']
+          // ]
         },
         ['Reprint/Reprint', '优文转载']
       ],

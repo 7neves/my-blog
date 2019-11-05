@@ -11,7 +11,7 @@ Cross-Origin Read Blocking (CORB) blocked cross-origin response https://www.fast
 开发中使用axios进行数据请求，需要用户登录后在请求头中添加token参数，携带token信息；在开发环境使用`FastMock`工具mock数据，执行请求的时候报了上述错误，导致预请求失败
 - 原因  
 在请求头中加入自定义参数，会导致执行**非简单请求**(详情参考阮一峰老师[跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html))，该请求会执行一个预请求(`options`请求)
-<img-show :img-info="{src:'https://raw.githubusercontent.com/7neves/CloudImg/master/images/20190805142131.png',description:'options预请求'}"/>
+<img-show :img-info="{src:'https://i.loli.net/2019/11/05/Xw9tcK35dWiTUoa.png',description:'options预请求'}"/>
 
 - 解决办法
   - 因为`FastMock`只是在开发阶段提供数据模拟服务，且无法对`FastMock`这种在线工具进行配置，所以通过配置axios的拦截选项，在请求发出前判断`baseURL`参数是否包含`FastMock`关键字，决定是否取消请求头中的自定义参数`token`，从而取消`options`请求的发出:
