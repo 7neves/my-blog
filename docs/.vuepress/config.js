@@ -62,7 +62,8 @@ module.exports = {
           sidebarDepth: 4,
           children: [
             ['JavaScript/JS-ES5', '日常收集'],
-            ['JavaScript/深入理解JavaScript', '深入理解JavaScript']
+            ['JavaScript/深入理解JavaScript', '深入理解JavaScript'],
+            ['JavaScript/防抖和截流', '防抖和截流']
             // ['JavaScript/ECMAScript', 'ECMAScript']
           ]
         },
