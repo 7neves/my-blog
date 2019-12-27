@@ -86,13 +86,20 @@ module.exports = {
         },
         ['Reprint/Reprint', '优文转载']
       ],
-      '/Frame/': [
-        ['ElementUI', 'ElementUI'],
-        ['FastMock', 'fastmock'],
+      '/Frame/': [{
+          title: 'Vue',
+          collapsable: false,
+          sidebarDepth: 4,
+          children: [
+            ['Vue/作用域插槽', '作用域插槽'],
+          ]
+        },
         ['Vue-Cli3', 'Vue-Cli3'],
         ['Vue-Router', 'Vue-Router'],
         ['VuePress', 'VuePress'],
-        ['Reprint', '优文转载']
+        ['Reprint', '优文转载'],
+        ['ElementUI', 'ElementUI'],
+        ['FastMock', 'fastmock'],
       ]
     },
     sidebarDepth: 3, // 侧边栏显示2级
