@@ -55,7 +55,6 @@ module.exports = {
             ['JavaScript/JS-ES5', '日常收集'],
             ['JavaScript/深入理解JavaScript', '深入理解JavaScript'],
             ['JavaScript/防抖和截流', '防抖和截流']
-            // ['JavaScript/ECMAScript', 'ECMAScript']
           ]
         },
         ['Reprint/Reprint', '优文转载']
@@ -74,21 +73,29 @@ module.exports = {
       },
       ['Reprint/Reprint', '优文转载']
       ],
-      '/Frame/': [{
-        title: 'Vue',
-        collapsable: false,
-        sidebarDepth: 4,
-        children: [
-          ['Vue/作用域插槽', '作用域插槽'],
-        ]
-      },
-      ['Vue-Cli3', 'Vue-Cli3'],
-      ['Vue-Router', 'Vue-Router'],
-      ['VuePress', 'VuePress'],
-      ['Reprint', '优文转载'],
-      ['ElementUI', 'ElementUI'],
-      ['FastMock', 'fastmock'],
-      ['Reprint', '优文转载']
+      '/Frame/': [
+        {
+          title: 'Vue',
+          collapsable: false,
+          sidebarDepth: 4,
+          children: [
+            ['Vue/作用域插槽', '作用域插槽'],
+          ],
+        },
+        {
+          title: 'Vue-Cli3',
+          collapsable: false,
+          sidebarDepth: 4,
+          children: [
+            ['Vue-Cli3/配置', '配置相关'],
+          ],
+        },
+        ['Vue-Router', 'Vue-Router'],
+        ['VuePress', 'VuePress'],
+        ['Reprint', '优文转载'],
+        ['ElementUI', 'ElementUI'],
+        ['FastMock', 'fastmock'],
+        ['Reprint', '优文转载']
       ],
       '/Interview/': [
         ['Vue', 'Vue']
