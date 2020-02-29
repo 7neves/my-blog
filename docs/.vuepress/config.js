@@ -83,6 +83,14 @@ module.exports = {
           ],
         },
         {
+          title: 'React',
+          collapsable: false,
+          sidebarDepth: 4,
+          children: [
+            ['React/React基础', 'React基础'],
+          ],
+        },
+        {
           title: 'Vue-Cli3',
           collapsable: false,
           sidebarDepth: 4,
