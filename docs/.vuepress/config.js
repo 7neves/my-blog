@@ -28,34 +28,25 @@ module.exports = {
   themeConfig: {
     // 导航栏配置
     nav: [{
-        text: 'JavaScript',
-        link: '/JavaScript/',
-      }, {
-        text: 'CSS',
-        link: '/CSS/'
-      }, {
-        text: 'HTML',
-        link: '/HTML/'
-      }, {
-        text: '框架/工具',
-        link: '/Frame/'
-      },
-      // {
-      //   text: '其它',
-      //   link: '/Other/'
-      // }
+      text: 'JavaScript',
+      link: '/JavaScript/',
+    }, {
+      text: 'CSS',
+      link: '/CSS/'
+    }, {
+      text: 'HTML',
+      link: '/HTML/'
+    }, {
+      text: '框架/工具',
+      link: '/Frame/'
+    }, {
+      text: '面试题',
+      link: '/Interview/'
+    }
     ],
     // 侧边栏配置
     sidebar: {
       '/JavaScript/': [
-        // {
-        //   title: 'ES6',
-        //   collapsable: false,
-        //   sidebarDepth: 3,
-        //   children: [
-        //     ['ES6/Promise', 'Promise']
-        //   ],
-        // },
         {
           title: 'JavaScript',
           collapsable: false,
@@ -70,36 +61,37 @@ module.exports = {
         ['Reprint/Reprint', '优文转载']
       ],
       '/CSS/': [{
-          title: 'CSS',
-          collapsable: true,
-          sidebarDepth: 3
-        },
-        ['Reprint/Reprint', '优文转载']
+        title: 'CSS',
+        collapsable: true,
+        sidebarDepth: 3
+      },
+      ['Reprint/Reprint', '优文转载']
       ],
       '/HTML/': [{
-          title: 'HTML',
-          collapsable: true,
-          sidebarDepth: 3,
-          // children: [
-          //   ['element', 'element']
-          // ]
-        },
-        ['Reprint/Reprint', '优文转载']
+        title: 'HTML',
+        collapsable: true,
+        sidebarDepth: 3
+      },
+      ['Reprint/Reprint', '优文转载']
       ],
       '/Frame/': [{
-          title: 'Vue',
-          collapsable: false,
-          sidebarDepth: 4,
-          children: [
-            ['Vue/作用域插槽', '作用域插槽'],
-          ]
-        },
-        ['Vue-Cli3', 'Vue-Cli3'],
-        ['Vue-Router', 'Vue-Router'],
-        ['VuePress', 'VuePress'],
-        ['Reprint', '优文转载'],
-        ['ElementUI', 'ElementUI'],
-        ['FastMock', 'fastmock'],
+        title: 'Vue',
+        collapsable: false,
+        sidebarDepth: 4,
+        children: [
+          ['Vue/作用域插槽', '作用域插槽'],
+        ]
+      },
+      ['Vue-Cli3', 'Vue-Cli3'],
+      ['Vue-Router', 'Vue-Router'],
+      ['VuePress', 'VuePress'],
+      ['Reprint', '优文转载'],
+      ['ElementUI', 'ElementUI'],
+      ['FastMock', 'fastmock'],
+      ['Reprint', '优文转载']
+      ],
+      '/Interview/': [
+        ['Vue', 'Vue']
       ]
     },
     sidebarDepth: 3, // 侧边栏显示2级
