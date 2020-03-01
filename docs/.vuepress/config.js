@@ -88,6 +88,7 @@ module.exports = {
           sidebarDepth: 4,
           children: [
             ['React/React基础', 'React基础'],
+            ['React/如何开发React应用', '如何开发React应用'],
           ],
         },
         {
