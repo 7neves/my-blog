@@ -108,7 +108,7 @@ React并没有像Vue一样提供大量的语法糖，JSX是其中之一，它实
     }
     ```
 2. class组件拥有更强大的功能，通常用来构建容器组件  
-  它可以拥有局部的 `state`，使用生命周期函数，修改状态等更丰富的功能
+  它可以拥有局部的 `state`，使用生命周期函数，修改状态等更丰富的功能。本节主要概述React创建组件的方式，详细的 class 组件说明参考:[class组件进阶](#class组件进阶)
     ```js {2,6,12,18}
     class Hello extends Component {
       constructor(props) {
@@ -643,4 +643,88 @@ function OtherComponent(props) {
       </SlotComponent>
     );
 }
+```
+## 11. 组件生命周期
+### 1. 定义 class 组件<h4 id="class组件进阶"></h4>
+
+- 定义 class 组件，需要继承 `React.Component` ；(关于类 [class](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes)和继承(创建子类) [extends](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes/extends))
+- 在继承的子类中，必须定义一个 [`render()`](https://zh-hans.reactjs.org/docs/react-component.html#render) 函数，这是 class 组件唯一必须实现的方法。
+```js {1,2}
+class Welcome extends React.Component {
+  render() {
+    return <div> Hello, React</div>
+  }
+}
+```
+只有在 class 组件中才能使用生命周期函数。
+### 2. 生命周期阶段
+<img-show :img-info="{src:'https://i.loli.net/2020/03/01/5nwEBkXuTy1deNq.png',description:'React 组件生命周期图'}"/>
+
+[React 组件完整的生命周期](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)。  
+加粗标记的为常用的方法。
+1. **挂载阶段**  
+当组件实例被创建并插入 DOM 中时，其生命周期调用顺序如下:
+    - [**`constructor()`**](https://zh-hans.reactjs.org/docs/react-component.html#constructor)，[构造函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes/constructor)
+    - `static getDervivedStateFromProps()`
+    - [**`render()`**](https://zh-hans.reactjs.org/docs/react-component.html#render)，渲染函数
+    - [**`componentDidMount()`**](https://zh-hans.reactjs.org/docs/react-component.html#componentdidmount)，可以在此进行请求的处理。
+2. **更新阶段**  
+当组件的 props 或 state 发生变化时会触发更新。组件更新的生命周期调用顺序如下：
+    - `static getDerivedStateFromProps()`
+    - [**`shouldComponentUpdate()`**](https://zh-hans.reactjs.org/docs/react-component.html#shouldcomponentupdate)，此方法仅作为性能优化的方式而存在
+    - [**`render()`**](https://zh-hans.reactjs.org/docs/react-component.html#render)，渲染函数
+    - `getSnapshotBeforeUpdate()`
+    - [**`componentDidUpdate()`**](https://zh-hans.reactjs.org/docs/react-component.html#componentdidupdate)
+3. **卸载阶段**  
+当组件从 DOM 中移除时会调用如下方法：
+    - [**`componentWillUnMount()`**](https://zh-hans.reactjs.org/docs/react-component.html#componentwillunmount)
+4. **错误处理**  
+当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法:
+    - `static getDerivedStateFromError()`
+    - `componentDidCatch()`
+## 12. 样式相关
+### 1. 为组件添加 class
+通过传递一个字符串作为 `className` 的属性即可：
+```js {2,11}
+render() {
+  return <div className='box'></div>
+}
+
+// 也可以传入一个表达式，如下这种类名依赖组件的 state 或 props 的情况也很常见
+render() {
+  let className = "menu";
+  if (this.props.isActive) {
+    className += " menu-active";
+  }
+  return <div className={className}>menu</div>
+}
+```
+### 2. 行内样式
+**注意**：React 并不推荐使用行内样式，因为从性能角度来讲， CSS 的 class 通常会比行内样式更好。  
+`style` 在 React 应用中都用于**在渲染过程中添加动态计算的样式**。  
+`style` 定义方式有两种：
+1. 接受一个采用小驼峰(camelCase)命名属性的JS对象，而不是 CSS 字符串。这与 DOM 中 `style` 的 JS 属性是一致的(例如：`node.style.backgroundImage`)，同时也会更高效，且能预防跨站脚本（XSS）的安全漏洞。如:
+    ```js {10}
+    const divStyle = {
+      color: 'blue',
+      backgroundImage: `url(${imgUrl})`,
+      // 注意：样式不会自动补齐前缀。如果需要做兼容性hack
+      WebkitTransition: 'all', // 这里的 W 要大写
+      msTransition: 'all' // 只有 'ms' 是需要小写的 
+    };
+
+    function Welcome() {
+      return <div style={divStyle}>Hello React</div>
+    }
+    ```
+2. 直接在表达式中用对象的方式定义行内样式
+```js {2,6}
+// 可以省略 px 单位
+<div style={{ color: 'blue', height: 10 }}>
+  Hello React
+</div>
+// 如果是其他单位则不能省略
+<div style={{ height: "10%" }}>
+  Hello React
+</div>
 ```
