@@ -89,6 +89,8 @@ module.exports = {
           children: [
             ['React/React基础', 'React基础'],
             ['React/如何开发React应用', '如何开发React应用'],
+            ['React/Redux基础', 'Redux基础'],
+            ['React/Redux进阶', 'Redux进阶']
           ],
         },
         {
