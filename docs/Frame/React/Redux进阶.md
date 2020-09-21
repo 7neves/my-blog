@@ -292,8 +292,8 @@ const mapDispatchToPorps = (dispatch) => {
 }
 ```
 ### 4. `<Provider>` 组件
-`connect()` 方法生成容器组件以后，需要让容器组件拿到state对象，才能生成 UI 组件的参数。  
-React-Redux 提供  `Provider` 组件，可以让容器组件拿到state。通常是在根组件中使用，这样一来，App的所有子组件就默认都可以拿到state了。
+`connect()` 方法生成容器组件以后，需要让容器组件拿到state对象，才能生成 UI 组件的参数。一种方式是把它以 props 的方式传入到所有容器组件中。但这样太麻烦了，因为必须要用 `store` 把 UI 组件包裹一层。   
+React-Redux 提供  `Provider` 组件，可以让所有容器组件都能访问 store，从而获取到 state ，而不用显式地传递它。只需要在渲染根组件使使用即可，这样一来，所有子组件就默认都可以拿到state了。
 ```js
 // index.js
 import { Provider } from 'react-redux';

@@ -90,7 +90,9 @@ module.exports = {
             ['React/React基础', 'React基础'],
             ['React/如何开发React应用', '如何开发React应用'],
             ['React/Redux基础', 'Redux基础'],
-            ['React/Redux进阶', 'Redux进阶']
+            ['React/Redux进阶', 'Redux进阶'],
+            ['React/从零开始实现一个Redux', '从零开始实现一个Redux'],
+            ['React/React路由', '路由react-router-dom'],
           ],
         },
         {
