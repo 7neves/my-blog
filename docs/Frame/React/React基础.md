@@ -11,9 +11,9 @@
 ## 2. JSX
 ### 1. JSX介绍
 React并没有像Vue一样提供大量的语法糖，JSX是其中之一，它实际是 `React.createElement(component,props,...children)` 函数的语法糖
-1. **JSX就是 React 用来描述页面展示内容的元素**，它是`JavaScript` 和 `XML` 的缩写，将二者进行了融合，可以在HTML中书写JS，也可以在JS逻辑中输出元素。其具有模板简单易用的特点，但是又具有JavaScript强大的功能。它实现了标记和逻辑的“共存”，不用人为的将二者分离到不同的文件或内容中，就能实现关注点分离。它写起来更接近于原生。
+1. **JSX就是 React 用来描述页面展示内容的元素**，它是`JavaScript` 和 `XML` 的缩写，将二者进行了融合，可以在HTML中书写JS，也可以在JS逻辑中输出元素。其具有模板简单易用的特点，但是又具有JavaScript强大的功能。它实现了标记和逻辑的“共存”，不用人为的将二者分离到不同的文件或内容中，就能实现关注点分离。它写起来更像是在写原生的JS。
 2. 使用JSX可以快速的使用HTML标签来生成虚拟DOM，例如：
-    ```js
+    ```jsx
     <div className="content">
       内容
     </div>
@@ -21,95 +21,110 @@ React并没有像Vue一样提供大量的语法糖，JSX是其中之一，它实
     会被编译为：
     ```js
     React.createElement(
-      'div',
-      { className: 'content' },
+      "div",
+      { className: "content" },
       "内容"
     )
     ```
 ### 2. JSX基础
-- 由于JSX会被编译为 `React.createElement` 函数调用的形式，所以 React 库必须包含在JSX代码作用域内；也就是只要使用JSX语法了，必须先引入 React 库；
-- 元素应使用 `<>` 包裹；
-- 如果标签中没有内容，可以使用 `/>` 来直接闭合标签（大部分的组件都可以这么做），如：
-  ```js
-  const imgElement = <img src={path}/>
-  ```
-- JSX 标签的第一部分指定了 React 元素的类型：  
-  - 首字母大写，表示一个自定义组件，如：`<App />`、`<Item />`等；
-  - 首字母小写，则表示普通的HTML元素，如：`<div>`、`<ul>`等；
-- JSX中定义属性：
-  - JSX在语法上更接近JS，而不是HTML，所以JSX中属性的名称，应使用 `camelCase`(小驼峰命名) 来定义，而不要使用 `kebab-case` 的方式，如：`className` 表示 `class`;
-- JSX中的属性值：
-  - 使用 **引号** 包裹时为一个字符串字面量，如下 `className` 的属性值； 
-  - `{}` 中可以使用任意有效的JS[表达式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Expressions_and_Operators)，类似Vue的属性绑定；
-- 多行JSX应使用 `()` 包裹；
-  ```js 
-  let listArr = ['item1', 'item2'];
-  const list = (
-    <ul>
-      {
-        listArr.map((item, index) => {
-          return (
-            <li key={item + index} 
-              className="item"
-            >
-            {item}
-            </li>
-          )
-        })
-      }
-    </ul>
-  )
-  ```
-- JSX也是一个表达式，可以将其赋值给一个变量，作为一个返回值等操作，例如在`if` 语句和 `for` 循环语句中使用：
-  ```js {3,5}
-  function demo(user) {
-    if(user) {
-      return <h1>Hello, {user.name}</h1>
-    }
-    return <h1>Hello, React</h1>
-  }
-  ```
-- 在JSX中甚至可以用点( `.` )语法
-  ```js {1,4}
-  <React.Fragment>
-    <Button.Blue>
-    <Button.Red>
-  <React.Fragment/>
-  ```
+由于JSX会被编译为 `React.createElement` 函数调用的形式，所以 React 库必须包含在JSX代码作用域内；也就是只要使用JSX语法了，必须先引入 React 库（所以在编写React组件的时候，第一件事是在顶部引入React：`import React from ‘react’;`）
+1. JSX中的元素
+   - 元素应使用 `<>` 包裹；
+   - 如果标签中没有内容，可以使用 `/>` 单标签的形式来直接闭合（大部分的组件都可以这么做），如：
+     ```jsx
+     const imgElement = <img src={path}/>;
+     ```
+   - JSX 标签的第一部分指定了 React 元素的类型：  
+     - 首字母大写，表示一个自定义组件，如：`<App />`、`<Item />`等；
+     - 首字母小写，则表示普通的HTML元素，如：`<div>`、`<ul>`等；  
+2. JSX中定义属性：
+   JSX在语法上更接近JS，而不是HTML，所以JSX中属性的名称，应使用 `camelCase`(小驼峰命名) 来定义，而不要使用 `kebab-case` 的方式，如：`className` 替代 `class`，`htmlFor`替代label标签的`for`
+3. JSX中的`{}`：在JSX的`{}`中可以写入任意有效的[表达式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Expressions_and_Operators)：
+   - 渲染数字
+   - 渲染字符串
+   - 渲染布尔值
+   - 为元素绑定属性值
+   - 渲染JSX元素
+   总之，JSX遇到`{}`就会按JS解析里面的内容
+4. 多行JSX元素只能有一个根节点，并且应使用 `()` 包裹：
+   ```jsx
+   let listArr = ['item1', 'item2'];
+   const list = (
+     <ul>
+       {
+         listArr.map((item, index) => {
+           return (
+             <li key={item + index} 
+               	className="item">
+             	{item}
+             </li>
+           )
+         })
+       }
+     </ul>
+   )
+   ```
+5. JSX也是一个表达式，可以将其赋值给一个变量，作为一个返回值等操作，例如在`if` 语句和 `for` 循环语句中使用：
+   ```jsx {3,5}
+   function demo(user) {
+     if(user) {
+       return <h1>Hello, {user.name}</h1>
+     }
+     return <h1>Hello, React</h1>
+   }
+   ```
+6. 在JSX中甚至可以用点( `.` )语法
+   ```jsx
+   <React.Fragment>
+     <Button.Blue>
+     <Button.Red>
+   <React.Fragment/>
+   ```
 :::  warning JSX使用注意
-1. 对于同一元素中的同一属性，要么使用`{}`表达式，要么使用引号，不能同时使用这两种符号
+1. 对于同一元素中的同一属性，要么使用`{}`表达式，要么使用字符串，不能同时混用
 2. 自定义组件必须以大写字母开头，不论是命名还是引入
 3. `if` 语句和 `for` 循环语句不属于JS表达式，因此不能直接在JSX中使用
 :::
 ## 3. 渲染机制
-1. React同Vue一样使用了虚拟DOM，所谓虚拟DOM，其实是一个JS对象，React通过 `React.createElement` 将JSX中的元素编译成类DOM的树状结构，在更新发生后，会存在两个virtualDOM，先通过diff算法比较两个对象之间的差异，然后只对有差异的节点进行更新。这里有两点，一是操作一个JS对象远比操作一个真实的DOM要快的多；二是只更新有差异的节点；从而达到提高性能的目的。参考：[如何理解虚拟DOM](https://www.zhihu.com/question/29504639/answer/609290611)
+### 1. 虚拟DOM
+所谓虚拟DOM，其实是一个JS对象。参考：[如何理解虚拟DOM](https://www.zhihu.com/question/29504639/answer/609290611)
+- 本质：使用JS对象来模拟浏览器中的DOM  
+- 目的：实现页面元素的高效更新  
+### 2. React渲染机制
+1. React同Vue一样使用了虚拟DOM，在React中通过 `React.createElement` 将JSX中的元素编译成类DOM的树状结构，在更新发生后，会存在两个virtualDOM，先通过diff算法比较两个对象之间的差异，然后只对有差异的节点进行更新。这里有两点，一是操作一个JS对象远比操作一个真实的DOM要快的多；二是只更新有差异的节点；从而达到提高性能的目的。
 2. React 元素渲染需要有一个根DOM，该节点内的所有内容都由 `React DOM` 管理
 3. 需要使用 `ReactDOM.render()` 函数来进行渲染
-    ```js {1,2,5}
+    ```jsx {1,2,5}
     import React from 'react';
-    import ReactDOM from 'react-dom'
-
-    const ele = <div>Hello React</div>
+    import ReactDOM from 'react-dom';
+    
+    const ele = <div>Hello React</div>;
     ReactDOM.render(ele, document.getElementById('root'));
     ```
-::: warning 注意
-1. 需要先引入 `React` 和 `ReactDOM` 
-2. 可以有多个根DOM
-3. 需要使用 `ReactDOM.render()` 函数（通常只使用一次）
-:::
+    ::: warning 注意
+    1. 需要先引入 `React`（存在于每个单文件组件中） 和 `ReactDOM` （通常在根组件只引入一次）
+    2. 可以有多个根DOM
+    3. 需要使用 `ReactDOM.render()` 函数（通常在根组件只使用一次）
+    :::
 ## 4. 组件基础
+
 > 组件，从概念上讲类似于 JavaScript 函数。它接收任意的入参（即“props”），并返回用于描述页面展示内容的 React 元素。
 
-### 1. 创建组件：函数组件 和 class组件
-1. 函数组件通常用来构建UI组件
-    ```js
-    function Hello(props) {
-      return <div>Hello, {props.name}</div>;
+### 1. 创建组件：函数组件和class组件
+React中创建组件的方式有两种：**函数组件** 和 **class组件**
+1. 函数组件  
+   创建函数组件的方式很简单，使用 `function` 关键字定义函数即可，它可以接受一个入参，即 `props` 从上层组件传递过来的数据；函数组件没有局部`state`（Hook可以），所以又称无状态组件  
+   注意：
+   - 函数名（即组件名）**必须大写开头**
+   - 函数必须**显式的返回一个 `JSX元素` 或 `null`**
+    ```jsx {1,2}
+    function Hello(props) { // 组件名首字母大写
+      return props.flag ? <div>Hello, {props.name}</div> : null; // 必须显式的 return 一个jsx元素或者null
     }
     ```
-2. class组件拥有更强大的功能，通常用来构建容器组件  
-  它可以拥有局部的 `state`，使用生命周期函数，修改状态等更丰富的功能。本节主要概述React创建组件的方式，详细的 class 组件说明参考:[class组件进阶](#class组件进阶)
-    ```js {2,6,12,18}
+2. class组件   
+   拥有更强大的功能，它可以拥有局部的 `state`，使用生命周期函数，修改状态等更丰富的功能。本节主要概述React创建组件的方式，详细的 class 组件说明参考:[class组件进阶](#class组件进阶)
+    ```jsx {2,6,12,18}
     class Hello extends Component {
       constructor(props) {
         super(props);
@@ -132,24 +147,25 @@ React并没有像Vue一样提供大量的语法糖，JSX是其中之一，它实
       }
     }
     ```
-3. 只能有一个根元素。  
-  当 `()` 中有多行元素时，需要在最外层用一个元素包裹（这点同Vue类似）；可以使用内置的组件，来避免真实DOM更多嵌套，它不会渲染出真实DOM，如 `Fragment`；这类似Vue的 `template`、`keep-alive`等内置组件
-    ```js {5,8}
-    class Hello extends Component {
-      render() {
-        return (
-          {/* 只能有一个根元素 */}
-          <React.Fragment>
-            <div>Hello, {this.props.name}</div>
-            <div>我是小明</div>
-          </React.Fragment>
-        )
-      }
-    }
-    ```
 ::: warning 注意
-定义组件时，组件名称必须以大写字母开头
+1. 定义组件时，组件名称必须以大写字母开头    
+2. 如果组件为单文件组件，必须在顶部引入 `React`：`import React from ‘react’`
+3. 只能有一个根元素
 :::
+ 当 `()` 中有多行元素时，需要在最外层用一个元素包裹（这点同Vue类似）；可以使用内置的组件，来避免真实DOM更多嵌套，它不会渲染出真实DOM，如 `Fragment`；这类似Vue的 `template`、`keep-alive`等内置组件
+ ```js {5,8}
+ class Hello extends Component {
+   render() {
+     return (
+       {/* 只能有一个根元素 */}
+       <React.Fragment>
+         <div>Hello, {this.props.name}</div>
+         <div>我是小明</div>
+       </React.Fragment>
+     )
+   }
+ }
+ ```
 ### 2. 使用组件：首字母大写
 在JSX中使用首字母大写的方式，使用组件
   ```js {7,8}
@@ -197,7 +213,7 @@ React中的组件是可以嵌套的。在项目中，构建可复用组件库是
     ```
     - **注意：** 属性展开很容易将不必要的 `props` 传递给不相关的组件，例如上例组件可能并不需要 `lastName` 属性；或者将无效的HTML属性传递给DOM。使用时需要谨慎。
 4. 进阶- `props` 传递函数  
-  可以通过 `{}` 向子组件 `props` 一个函数指针，在子组件中触发。因为 `props` 是只读的，所以可以通过这种方式在子组件中触发父组件的方法，进而修改父组件中的状态，从而改变 `props`
+    可以通过 `{}` 向子组件 `props` 一个函数指针，在子组件中触发。因为 `props` 是只读的，所以可以通过这种方式在子组件中触发父组件的方法，进而修改父组件中的状态，从而改变 `props`
     ```js {43}
     // 子组件
     class Child extends React.Component {
@@ -246,12 +262,12 @@ React中的组件是可以嵌套的。在项目中，构建可复用组件库是
       }
     }
     ```
-::: warning 注意：`props` 永远都是只读的
+::: warning 注意： props 永远都是只读的
 `props` 永远都是只读的，必须像纯函数一样确保 `props` 不被修改
 :::
 ### 5. 事件处理
 与Vue提供了 `v-on` 语法糖来绑定事件不同，React元素的事件处理和DOM元素的原生事件很相似，只是语法上有稍微的不同：
-  - 事件名采用小驼峰（camelCase）命名，而不是纯小写
+  - 事件名采用小驼峰（camelCase）命名，而不是纯小写：`onClick`、`onMouseMove`
   - 使用 JSX 语法时需要传入一个函数名作为事件要处理的函数（所以一般需要进行`bind`），而不是像Vue中的传入一个字符串；
   - 不用显式的使用 `addEventListener()` 来为元素添加监听器
   ```html {6}
@@ -260,12 +276,12 @@ React中的组件是可以嵌套的。在项目中，构建可复用组件库是
   <!-- Vue中的事件处理 -->
   <button @click="handleClick">click</button>
   <!-- React中的事件处理 -->
-  <button onClick={handleClick}>click</button>
+  <button onClick={this.handleClick}>click</button>
   ```
 1. 阻止默认事件  
 原生DOM事件中可以 `return false` 来阻止事件的触发，与原生不同的是React中阻止默认事件必须显式的使用`preventDefault()` 来阻止默认事件。
 2. 事件对象 `event` (通常简写为 `e`)    
-  在React中 `event` 是一个合成事件，React已经根据规范定义这些合成事件，所以完全可以当做 DOM 原生事件对象来使用。
+    在React中 `event` 是一个合成事件，React已经根据规范定义这些合成事件，所以完全可以当做 DOM 原生事件对象来使用。
     ```html
     <!-- 原生DOM阻止连接跳转 -->
     <a href="#" onclick="return false">link to</a>
@@ -281,7 +297,7 @@ React中的组件是可以嵌套的。在项目中，构建可复用组件库是
     }
     ```
 3. 处理class组件中的函数指针  
-  使用 class 来定义组件的时候，通常是将事件处理函数声明为 class 中的方法。
+    使用 class 来定义组件的时候，通常是将事件处理函数声明为 class 中的方法。
     ```js {6}
     class Button extends React.Component {
       constructor(props) {
@@ -367,7 +383,7 @@ React中的组件是可以嵌套的。在项目中，构建可复用组件库是
     这两种情况，React的事件对象 `e` 会被当做第二个参数传递。不同的是，箭头函数的方式事件对象必须显式传递，而 `bind()` 则可以进行隐式传递。
 ## 5. State
 不管是父组件或是子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是 class 组件。  
-所以 **`State` 是组件的局部状态**，它与 `props` 类似，但是 `state` 是私有的，并且完全受控于当前组件，其他组件无权访问。
+所以 **`State` 是组件的局部状态**，它与 `props` 类似，但是 **`state` 是私有的，并且完全受控于当前组件，其他组件无权访问**。
 ### 1. class组件的构造函数 是唯一可以初始化 `state` 的地方
   ```js {2,6}
   class MyComponent extends React.Component {
@@ -392,7 +408,17 @@ this.setState({
 ```
 - **注意**：`setState()` 进行的是浅合并
 ### 3. `setState()` 是异步的
-出于性能考虑，React 可能会把多个 `setState()` 调用合并成一个调用。因为 `this.props` 和 `this.state` 可能会异步更新，所以不要依赖他们的值来更新下一个状态。
+  出于性能考虑，React 可能会把多个 `setState()` 调用合并成一个调用。因为 `this.props` 和 `this.state` 可能会异步更新，所以不要依赖他们的值来更新下一个状态。如下：
+  ```jsx
+  handleClick = () => {
+      this.setState({
+        msg: '哈哈'
+      })
+      // 在setState()之后立即使用状态，可能会获取不到预期的结果，因为setState()是异步的
+      console.log(this.state.msg);
+  }
+  ```
+  ![setState()shi异步的](https://i.loli.net/2020/09/03/liqAkdnyBwgHKE5.gif)
 ### 4. 向 `setState()` 传递一个函数解决异步问题
 要解决 `setState()` 异步的问题，可以让 `setState()` 接收一个函数而不是一个对象。
 ```js
@@ -586,11 +612,14 @@ methods: {
     ```
 ## 9. 状态提升
 [查看状态提升Demo](https://codesandbox.io/s/reactstatepromote-e6dzy?fontsize=14&hidenavigation=1&theme=dark)  
-在React中，没有计算属性，也没有数据的双向绑定，因为在React应用中，**任何可变数据应当只有一个相对应的唯一“数据源”**。React应用开发时，通常的做法是：  
+在React中，没有计算属性，也没有数据的双向绑定，因为在React应用中，**任何可变数据应当只有一个相对应的唯一“数据源”**。  
+> **当你遇到需要同时获取多个子组件数据，或者两个组件之间需要相互通讯的情况时，需要把子组件的 state 数据提升至其共同的父组件当中保存。之后父组件可以通过 props 将状态数据传递到子组件当中。这样应用当中所有组件的状态数据就能够更方便地同步共享了**。
+
+对于新手来说通常的做法是（老手完全可以根据经验来设计好这些组件）：  
   1. 第一步，首先将`state`添加到需要渲染数据的组件中，构建出组件；
   2. 第二步，然后，如果其他组件也需要这个`state`，那么就将它提升至这些组件最近的共同父组件中，如果有 `setState()` 逻辑也提升至该父组件中。使该`state`成为唯一的“数据源”，并形成一种自上而下的数据流；
   3. 第三步，修改构建出的组件中的 `state` 为 `props`，并修改触发 `setState()` 函数的逻辑改由 `props` 来控制。  
-  
+
 虽然这种提升 state 的方式相比较Vue中的双向绑定看起来较为复杂，但带来的好处是，更容易的排查问题。由于 **“存在”于组件中的任何 state，仅有组件自己能修改它**。  
 ::: warning 注意
 如果某些数据可以由 props 或 state 推导得出，那么它就不应该存在于 state 中私有化。
@@ -684,26 +713,59 @@ class Welcome extends React.Component {
     - `componentDidCatch()`
 ## 12. 样式相关
 ### 1. 为组件添加 class
-通过传递一个字符串作为 `className` 的属性即可：
-```js {2,11}
-render() {
-  return <div className='box'></div>
-}
+1. 最简单的使用CSS的class是通过传递一个字符串作为 `className` 的属性即可：
+   ```jsx {4,13}
+   import 'styles.css'; // 引入样式文件
 
-// 也可以传入一个表达式，如下这种类名依赖组件的 state 或 props 的情况也很常见
-render() {
-  let className = "menu";
-  if (this.props.isActive) {
-    className += " menu-active";
-  }
-  return <div className={className}>menu</div>
-}
-```
+   render() {
+     return <div className='box'></div>
+   }
+
+   // 也可以传入一个表达式，如下这种类名依赖组件的 state 或 props 的情况也很常见
+   render() {
+     let className = "menu";
+     if (this.props.isActive) {
+       className += " menu-active";
+     }
+     return <div className={className}>menu</div>
+   }
+   ```
+2. CSS作用域  
+   在react中的css样式并没有像Vue一样提供“作用域(scoped)”的，也就是说它是全局的，这会带来很多问题：
+      - 全局污染
+      - 命名混乱
+      - 依赖关系复杂
+      - 无法共享变量
+      - 代码冗余，难维护  
+  
+    React为解决上述问题提供了很多解决方案，包括CSS-in-JS，CSS-module等，在[`create-react-app`脚手架工具中内置了`CSS-module`方案](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet)，关于在`create-react-app`中使用`CSS-module`的方式看[这里](https://juejin.im/post/6844903760867786759)，这里简单说下使用`**.module.css`后缀名的形式（这也是官方文档里的方式）来实现：
+      ```jsx {2,8,10,11}
+      // 首先样式文件的后缀名要统一修改为 .module.css/sass/scss 的形式，然后在组件中引入文件
+      import styles from 'styles.modules.css';
+
+      render() {
+        return (
+          <div>
+            {/* 像使用一个变量一样使用样式 */}
+            <div className={styles.box}>test</div>
+            {/* 多个混合样式名 */}
+            <div className={[style.box, 'title'].join(' ')}>test</div>
+            <div className={style.box + ' title'}>test</div>
+          </div>
+        )
+      }
+      ```
+    - 在`CSS-module`中定义全局变量，可以使用`:global(className)`包括即可
+      ```css
+      :global(.test) {
+        font-style: italic;
+      }
+      ```
 ### 2. 行内样式
 **注意**：React 并不推荐使用行内样式，因为从性能角度来讲， CSS 的 class 通常会比行内样式更好。  
-`style` 在 React 应用中都用于**在渲染过程中添加动态计算的样式**。  
+`style` 在 React 应用中都用于**在渲染过程中添加动态计算的样式**。所以需要使用js的方式来设置，使用 `{}` 包裹一个对象的方式。  
 `style` 定义方式有两种：
-1. 接受一个采用小驼峰(camelCase)命名属性的JS对象，而不是 CSS 字符串。这与 DOM 中 `style` 的 JS 属性是一致的(例如：`node.style.backgroundImage`)，同时也会更高效，且能预防跨站脚本（XSS）的安全漏洞。如:
+1. 接受一个采用 *小驼峰(camelCase)* 命名属性的JS对象，而不是 CSS 字符串。这与 DOM 中 `style` 的 JS 属性是一致的(例如：`node.style.backgroundImage`)，同时也会更高效，且能预防跨站脚本（XSS）的安全漏洞。如:
     ```js {10}
     const divStyle = {
       color: 'blue',
@@ -718,13 +780,13 @@ render() {
     }
     ```
 2. 直接在表达式中用对象的方式定义行内样式
-```js {2,6}
-// 可以省略 px 单位
-<div style={{ color: 'blue', height: 10 }}>
-  Hello React
-</div>
-// 如果是其他单位则不能省略
-<div style={{ height: "10%" }}>
-  Hello React
-</div>
-```
+   ```js {2,6}
+   // 可以省略 px 单位
+   <div style={{ color: 'blue', height: 10 }}>
+     Hello React
+   </div>
+   // 如果是其他单位则不能省略
+   <div style={{ height: "10%" }}>
+     Hello React
+   </div>
+   ```
