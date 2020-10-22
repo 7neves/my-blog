@@ -50,7 +50,7 @@ module.exports = {
         {
           title: 'JavaScript',
           collapsable: false,
-          sidebarDepth: 4,
+          sidebarDepth: 5,
           children: [
             ['JavaScript/JS-ES5', '日常收集'],
             ['JavaScript/深入理解JavaScript', '深入理解JavaScript'],
@@ -77,9 +77,12 @@ module.exports = {
         {
           title: 'Vue',
           collapsable: false,
-          sidebarDepth: 4,
+          sidebarDepth: 5,
           children: [
             ['Vue/作用域插槽', '作用域插槽'],
+            ['Vue/Vue-Router', 'Vue-Router'],
+            ['Vue/VuePress', 'VuePress'],
+            ['Vue/vue-cli3', 'vue-cli3相关'],
           ],
         },
         {
@@ -91,20 +94,9 @@ module.exports = {
             ['React/如何开发React应用', '如何开发React应用'],
             ['React/Redux基础', 'Redux基础'],
             ['React/Redux进阶', 'Redux进阶'],
-            ['React/从零开始实现一个Redux', '从零开始实现一个Redux'],
-            ['React/React路由', '路由react-router-dom'],
+            ['React/从零开始实现一个Redux', '从零开始实现一个Redux']
           ],
         },
-        {
-          title: 'Vue-Cli3',
-          collapsable: false,
-          sidebarDepth: 4,
-          children: [
-            ['Vue-Cli3/配置', '配置相关'],
-          ],
-        },
-        ['Vue-Router', 'Vue-Router'],
-        ['VuePress', 'VuePress'],
         ['Reprint', '优文转载'],
         ['ElementUI', 'ElementUI'],
         ['FastMock', 'fastmock'],
@@ -114,7 +106,7 @@ module.exports = {
         ['Vue', 'Vue']
       ]
     },
-    sidebarDepth: 3, // 侧边栏显示2级
+    sidebarDepth: 4, // 侧边栏显示2级
     search: true, // 启用搜索
     searchMaxSuggestions: 10, // 搜索显示的条目数量
     lastUpdated: '更新时间', // string | boolean
