@@ -1,7 +1,8 @@
+## vue-cli3配置相关
 vue-cli3中对[webpack的配置](https://cli.vuejs.org/zh/guide/webpack.html#webpack-相关)有两种，所以以下配置基本都会有两种配置方式，自行选择
   - 高级的链式配置[`chainWebpack`](https://cli.vuejs.org/zh/guide/webpack.html#%E9%93%BE%E5%BC%8F%E6%93%8D%E4%BD%9C-%E9%AB%98%E7%BA%A7)
   - 简单的配置[`configureWebpack`](https://cli.vuejs.org/zh/guide/webpack.html#%E7%AE%80%E5%8D%95%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F)
-## 1. 配置Gzip压缩
+### 1. 配置Gzip压缩
 使用插件`compression-webpack-plugin`插件来实现Gzip压缩
 1. 安装插件
   ```js
@@ -29,7 +30,7 @@ vue-cli3中对[webpack的配置](https://cli.vuejs.org/zh/guide/webpack.html#web
   }
   ```
 2.2 使用简单的配置`configureWebpack`来实现，[参考](https://www.cnblogs.com/yangshifu/p/9724709.html)
-## 2. 配置打包分析插件`webpack-bundle-analyze`
+### 2. 配置打包分析插件`webpack-bundle-analyze`
 `webpack-bundle-analyze` 插件可以提供一个可视化的图形界面展示打包后各个文件的依赖关系，以便对各个文件进行分析，进行进一步打包优化。
 在vue-cli2中已经内置了该插件的配置，开箱即用，但是在vue-cli3中需要进行手动配置。
 - 简单的配置方式：
@@ -62,7 +63,7 @@ vue-cli3中对[webpack的配置](https://cli.vuejs.org/zh/guide/webpack.html#web
   },
   ```
 - **出现问题的点**：不用再另行配置 `package.json`文件中的 `scripts`，直接执行命令`npm run build --report`就会输出分析页面，执行`npm run build`将不会输出。
-## 3. 静态资源的处理和vue-cli3中的环境变量
+### 3. 静态资源的处理和vue-cli3中的环境变量
 本文参考[Vue CLI3搭建的项目中路径相关问题的解决](https://www.jb51.net/article/147558.htm) ，进行了重新排版和总结  
 项目中的静态资源通常通过这两种方式进行处理:  
 1. 不会被 webpack 处理的，将会直接被拷贝：
@@ -79,11 +80,11 @@ vue-cli3中对[webpack的配置](https://cli.vuejs.org/zh/guide/webpack.html#web
       - 先来看看哪些文件需要放在 `public/` 目录下  
         - 项目中会有大量的图片或图片质量很高(单个图片文件很大)时  
           因为webpack会将图片处理为`base64`，而这些base64的编码会被放入js文件中，当渲染页面的时候渲染出来；base64编码的长度([处理原理](https://segmentfault.com/q/1010000000456088))是根据图片大小来定的：  
-          图片大小|base64编码长度
-          :-:|:-:
-          2.5KB|3420个字符
-          58KB|12726个字符
-          562KB|767644个字符
+          | 图片大小 | base64编码长度 |
+          | :------: | :------------: |
+          |  2.5KB   |   3420个字符   |
+          |   58KB   |  12726个字符   |
+          |  562KB   |  767644个字符  |
           再看下打包后文件的大小：
           <img-show :img-info="{src:'https://i.loli.net/2019/11/05/oH5m6lFDZfVnw79.png',description:'打包2.5KB的图片'}"/>
           <img-show :img-info="{src:'https://i.loli.net/2019/11/05/W5mcONpZqHhEP8z.jpg',description:'打包562KB的图片'}"/>
@@ -95,11 +96,12 @@ vue-cli3中对[webpack的配置](https://cli.vuejs.org/zh/guide/webpack.html#web
       - 再来看看什么情况下需要使用绝对路径，和使用绝对路径需要注意的一些问题  
           - 使用场景：上文说了，绝对路径会被保留，`public/`目录会被直接拷贝；所以通常**引用`public/`目录下的文件时会使用绝对路径**。
           - **注意：使用绝对路径引入文件时一定要确保使用 [`baseUrl`（从 Vue CLI 3.3 起已弃用，请使用 `publicPath` ）](https://cli.vuejs.org/zh/config/#publicpath) 的值作为 URL 的开头**，因为：
+            
             > 默认情况下，Vue CLI 会假设你的应用是被部署在一个域名的根路径上，例如 https://www.my-app.com/。如果应用被部署在一个子路径上，你就需要用这个选项指定这个子路径。例如，如果你的应用被部署在 https://www.my-app.com/my-app/，则设置 publicPath 为 /my-app/。
           - 使用方法：  
             从注意事项中了解到绝对路径的使用其实主要是 `publicPath` 的使用，所以需要重点了解`publicPath`；而该值与[环境变量](https://cli.vuejs.org/zh/guide/mode-and-env.html#环境变量和模式)有很大的关系：
               > BASE_URL - 会和 vue.config.js 中的 publicPath 选项相符，即你的应用会部署到的基础路径。
-              
+            
             所以如何使用绝对路径的问题，也就变成了如何使用`BASE_URL`这个环境变量的问题
             - 在.html模板文件中使用  
               借助 lodash template 使用[插值](https://cli.vuejs.org/zh/guide/html-and-static-assets.html#插值)的方式插入这个变量：
@@ -140,9 +142,114 @@ vue-cli3中对[webpack的配置](https://cli.vuejs.org/zh/guide/webpack.html#web
                 }
               }
               ```
-## 4. 使用`.svg`文件作为背景图片
+### 4. 使用`.svg`文件作为背景图片
 - **问题**：在项目中将`.svg`的文件存放于 `./src/assets/images` 目录下，使用会被webpack打包处理的引用方式：`background-image: url("~@/assets/images/xxx.svg");`，本地开发环境能正常展示，打包后图片无法正常展示。通过观察打包目录发现，`.svg`文件被单独打包到静态资源下的 `img/` 目录下，而未经过webpack处理。
 - **解决问题**：猜想是默认配置问题，通过`vue ui`检查webpack配置，发现vue-cli3对`.svg`文件的处理方式如下：
   <img-show :img-info="{src:'https://i.loli.net/2019/11/05/NqfCF4PR5TuctaY.png',description:'默认配置'}" />
 在vue-cli3默认的配置中，处理`.svg`文件的方式是添加hash值之后直接拷贝的，并不会压缩处理。
   - 将`.svg`文件放在`public/`目录下，进行文件的直接拷贝，使用方式同引用`public/`目录下文件的方式一样
+## vue-cli3生态相关 
+### 1. 使用[`postcss-pxtorem`](https://www.npmjs.com/package/postcss-pxtorem)
+
+> postcss-pxtorem是PostCSS的插件，用于将像素单元生成rem单位。
+
+在移动端的开发中，通常会使用`rem`单位进行开发，而设计稿的单位是 `px`，所以中间需要进行换算，使用 `postcss-pxtorem` 能将`px`自动换算为`rem`，大大提高开发效率。
+
+1. 安装依赖：
+   ```shell
+   npm install postcss-pxtorem -D
+   ```
+
+2. 设置规则（更改 `postcss.config.js`,该文件为使用vue-cli3自动创建的文件）
+
+   ```js
+   module.exports = {
+     plugins: {
+       'autoprefixer': {
+         overrideBrowserslist: [
+           "Android 4.1",
+           "iOS 7.1",
+           "Chrome > 31",
+           "ff > 31",
+           "ie >= 8"
+         ]
+       },
+       'postcss-pxtorem': {
+         rootValue: 16, //基准值，结果为：设计稿元素尺寸/16，比如元素宽320px,最终页面会换算成 20rem
+         propList: ["*"] // 能被转换的样式属性，*表示所有属性都能被转换
+       }
+     }
+   }
+   ```
+
+3. 使用技巧：对不同的文件使用不同的 `rootValue` 的值
+
+   在开发中使用了[ `vant`](https://youzan.github.io/vant/#/zh-CN/quickstart)UI库，其使用的单位为px，为1X图（375），而现在设计图基本都为2X（750），在使用postcss-pxtorem插件转换rem时， 导致vant 组件样式过小，可以使用动态的rootValue，对其进行一个2倍的放大：
+
+   ```js
+   module.exports = ({ file }) => {
+       let isVant = file && file.dirname && file.dirname.indexOf("vant") > -1;
+       let rootValue = isVant ? 37.5 : 75; 
+       return {
+           plugins: {
+               autoprefixer: {},
+               "postcss-pxtorem": {
+                   rootValue: rootValue,
+                   propList: ["*"] 
+               }
+           }
+       }
+   }
+   ```
+
+4. 使用技巧：匹配规则的巧用
+
+   通过设置`postcss-pxtorem`中的`propList`属性，可以进行样式的过滤：
+
+   - 使用`*`匹配所有属性，例如：`propList: ["*"]`
+   - 在单词的前面或后面使用`*`，将会匹配到该包含该单词的属性：`propList: ["*position*"]`将会匹配到`background-position`
+   - 使用`!`过滤不需要匹配的属性：`propList: ["!border”]`表示不匹配所有的 `border` 样式
+   - 可以组合使用：`propList: ["*", "!border”, "!font*"]`表示不匹配所有样式，除了 `border` 样式，以及包含`font`的样式
+
+5. 使用技巧：在某个样式中忽略转换
+
+   有时候可能只是想在某一个样式中不需要进行转换，而不是所有样式，可以将 `px` 单位大写：`PX` 或 `Px`：
+
+   ```css
+   // 小写的 px 单位会被转换为 rem
+   .convert {
+       font-size: 16px; // converted to 1rem
+   }
+    
+   // 将 px 大写：PX 或 Px，则可以过滤掉该样式，而不会过滤掉所有：如下，只是过滤了 .ignore 的 border 和 border-width，而不会过滤掉 .no-ignore 类里的 border 和 border-width 
+   .ignore {
+       border: 1Px solid; // ignored
+       border-width: 2PX; // ignored
+   }
+   
+   .other {
+       border: 1px solid; // converted 
+       border-width: 2px; // converted 
+   }
+   ```
+
+6. 使用技巧：搭配`amfe-flexible`实现多种设备自适应
+
+   因为 `rem` 为相对单位，相对于根元素的字体大小来的，如：html默认的font-size为16px，那么1.2rem就是16*2=32px。需要根据设备分辨率大小来动态改变根元素的大小，来进行自适应适配。使用 `amfe-flexible`来动态改变根元素字体大小，实现自适应。使用方法很简单：
+
+   - 安装
+
+     ```shell
+     npm i -S amfe-flexible
+     ```
+
+   - 使用：在main.js中导入即可
+
+     ```js
+     import 'amfe-flexible';
+     ```
+
+     
+
+
+
