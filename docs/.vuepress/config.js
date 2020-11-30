@@ -97,7 +97,6 @@ module.exports = {
             ['React/从零开始实现一个Redux', '从零开始实现一个Redux']
           ],
         },
-        ['Reprint', '优文转载'],
         ['ElementUI', 'ElementUI'],
         ['FastMock', 'fastmock'],
         ['Reprint', '优文转载']
