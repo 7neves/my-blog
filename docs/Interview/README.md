@@ -1,1 +1,0 @@
-<img :src="$withBase('/images/interview.png')" alt="interview">

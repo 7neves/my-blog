@@ -1,7 +1,7 @@
 ---
 home: true
 actionText: MyBlog →
-actionLink: /JavaScript/
+actionLink: /web/
 features:
 - title: 一日三省
 - title: 温故知新
