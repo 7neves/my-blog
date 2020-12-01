@@ -17,7 +17,7 @@ module.exports = {
   head: [
     ['link', {
       rel: 'icon',
-      href: '/logo.jpg',
+      href: '/favicon.ico',
     }]
   ],
   base: '/', // 部署站点的基础路径
