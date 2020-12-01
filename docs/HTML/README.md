@@ -1,1 +1,0 @@
-<img :src="$withBase('/images/HTML.png')" alt="HTML">

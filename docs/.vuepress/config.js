@@ -28,56 +28,30 @@ module.exports = {
   themeConfig: {
     // 导航栏配置
     nav: [{
-      text: 'JavaScript',
-      link: '/JavaScript/',
+      text: 'web前端',
+      link: '/web/'
     }, {
-      text: 'CSS',
-      link: '/CSS/'
-    }, {
-      text: 'HTML',
-      link: '/HTML/'
-    }, {
-      text: '框架/工具',
-      link: '/Frame/'
-    }, {
-      text: '面试题',
-      link: '/Interview/'
+      text: '常用工具',
+      link: '/utils/'
     }
     ],
     // 侧边栏配置
     sidebar: {
-      '/JavaScript/': [
+      '/web/': [
         {
           title: 'JavaScript',
-          collapsable: false,
+          collapsable: true,
           sidebarDepth: 5,
           children: [
-            ['JavaScript/JS-ES5', '日常收集'],
+            ['JavaScript/日常', '日常记录'],
             ['JavaScript/深入理解JavaScript', '深入理解JavaScript'],
             ['JavaScript/防抖和截流', '防抖和截流']
           ]
         },
-        ['Reprint/Reprint', '优文转载']
-      ],
-      '/CSS/': [{
-        title: 'CSS',
-        collapsable: true,
-        sidebarDepth: 3
-      },
-      ['Reprint/Reprint', '优文转载']
-      ],
-      '/HTML/': [{
-        title: 'HTML',
-        collapsable: true,
-        sidebarDepth: 3
-      },
-      ['Reprint/Reprint', '优文转载']
-      ],
-      '/Frame/': [
         {
           title: 'Vue',
-          collapsable: false,
-          sidebarDepth: 5,
+          collapsable: true,
+          sidebarDepth: 4,
           children: [
             ['Vue/作用域插槽', '作用域插槽'],
             ['Vue/Vue-Router', 'Vue-Router'],
@@ -87,7 +61,7 @@ module.exports = {
         },
         {
           title: 'React',
-          collapsable: false,
+          collapsable: true,
           sidebarDepth: 4,
           children: [
             ['React/React基础', 'React基础'],
@@ -97,17 +71,36 @@ module.exports = {
             ['React/从零开始实现一个Redux', '从零开始实现一个Redux']
           ],
         },
+        {
+          title: 'CSS',
+          collapsable: true,
+          sidebarDepth: 4,
+          children: [],
+        },
         ['ElementUI', 'ElementUI'],
         ['FastMock', 'fastmock'],
-        ['Reprint', '优文转载']
+        {
+          title: '面试题',
+          collapsable: true,
+          sidebarDepth: 4,
+          children: [
+            ['面试题/Vue', 'Vue相关']
+          ],
+        },
       ],
-      '/Interview/': [
-        ['Vue', 'Vue']
-      ]
+      '/utils/': [{
+        title: '常用工具',
+        collapsable: true,
+        sidebarDepth: 4,
+        children: [
+          ['图床', '图床相关']
+        ]
+      }]
     },
     sidebarDepth: 4, // 侧边栏显示2级
     search: true, // 启用搜索
     searchMaxSuggestions: 10, // 搜索显示的条目数量
     lastUpdated: '更新时间', // string | boolean
+    smoothScroll: true
   }
 };

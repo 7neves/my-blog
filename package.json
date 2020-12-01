@@ -21,6 +21,6 @@
   "homepage": "https://github.com/7neves/MyBlog#readme",
   "devDependencies": {
     "@vuepress/plugin-medium-zoom": "^1.2.0",
-    "vuepress": "^1.0.2"
+    "vuepress": "^1.7.1"
   }
 }
