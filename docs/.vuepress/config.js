@@ -77,6 +77,15 @@ module.exports = {
           sidebarDepth: 4,
           children: [],
         },
+        {
+          title: 'UmiJS',
+          collapsable: true,
+          sidebarDepth: 4,
+          children: [
+            ['UmiJS/plugins', '插件相关'],
+            ['UmiJS/config', '配置相关'],
+          ],
+        },
         ['ElementUI', 'ElementUI'],
         ['FastMock', 'fastmock'],
         {
