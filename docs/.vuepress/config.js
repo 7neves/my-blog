@@ -86,8 +86,6 @@ module.exports = {
             ['UmiJS/config', '配置相关'],
           ],
         },
-        ['ElementUI', 'ElementUI'],
-        ['FastMock', 'fastmock'],
         {
           title: '工具类',
           collapsable: true,
@@ -96,6 +94,9 @@ module.exports = {
             ['Tools/AES', 'AES加密工具']
           ],
         },
+        ['Mobile', 'Mobile'],
+        ['ElementUI', 'ElementUI'],
+        ['FastMock', 'fastmock'],
         {
           title: '面试题',
           collapsable: true,
