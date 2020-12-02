@@ -31,7 +31,7 @@ module.exports = {
       text: 'web前端',
       link: '/web/'
     }, {
-      text: '常用工具',
+      text: '其他',
       link: '/utils/'
     }
     ],
@@ -89,6 +89,14 @@ module.exports = {
         ['ElementUI', 'ElementUI'],
         ['FastMock', 'fastmock'],
         {
+          title: '工具类',
+          collapsable: true,
+          sidebarDepth: 4,
+          children: [
+            ['Tools/AES', 'AES加密工具']
+          ],
+        },
+        {
           title: '面试题',
           collapsable: true,
           sidebarDepth: 4,
@@ -98,7 +106,7 @@ module.exports = {
         },
       ],
       '/utils/': [{
-        title: '常用工具',
+        title: '工具类',
         collapsable: true,
         sidebarDepth: 4,
         children: [
