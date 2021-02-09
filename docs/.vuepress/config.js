@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   title: 'Seven\'s Blog',
-  description: '沉淀，沉淀，再沉淀',
+  description: '积跬步以至千里，积小流以成江海',
   plugins: {
     '@vuepress/plugin-medium-zoom': { // 注意：此处不是@vuepress/plugin-medium-zoom
       selector: 'img.zoom-img',
@@ -70,6 +70,14 @@ module.exports = {
             ['React/Redux进阶', 'Redux进阶'],
             ['React/从零开始实现一个Redux', '从零开始实现一个Redux']
           ],
+        },
+        {
+          title: 'react-router',
+          collapsable: true,
+          sidebarDepth: 4,
+          children: [
+            ['ReactRouter/拦截器配置', '权限控制']
+          ]
         },
         {
           title: 'CSS',
