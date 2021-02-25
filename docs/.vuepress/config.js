@@ -43,9 +43,10 @@ module.exports = {
           collapsable: true,
           sidebarDepth: 5,
           children: [
-            ['JavaScript/日常', '日常记录'],
             ['JavaScript/深入理解JavaScript', '深入理解JavaScript'],
-            ['JavaScript/防抖和截流', '防抖和截流']
+            ['JavaScript/常用工具函数', '常用工具函数'],
+            ['JavaScript/日常', '日常记录'],
+            ['JavaScript/防抖和截流', '防抖和节流']
           ]
         },
         {
@@ -95,7 +96,7 @@ module.exports = {
           ],
         },
         {
-          title: '工具类',
+          title: 'Utils',
           collapsable: true,
           sidebarDepth: 4,
           children: [
